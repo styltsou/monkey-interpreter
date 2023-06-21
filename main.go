@@ -2,13 +2,19 @@ package main
 
 import (
 	"fmt"
-	"testing"
+	"os/user"
+
+	"github.com/styltsou/monkey-interpreter/repl"
 )
 
-func TestNextToken(t *testing.T) {
-	fmt.Println("Test run")
-}
-
 func main() {
-	fmt.Println("Hello, World!")
+	user, err := user.Current()
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("Hello %s! This is the Monkey programming language!\n", user.Username)
+	fmt.Println("Feel free to type commands.")
+
+	repl.Start()
 }
